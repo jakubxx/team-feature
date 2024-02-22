@@ -1,0 +1,22 @@
+<globe-ui-page-list
+  fxFlex
+  [listName]="'teams'"
+  [name]="'teams.name' | translate: { COUNT: 2 }"
+  [columns]="columns"
+  [showExport]="true"
+  [rowLinkFn]="rowLinkFn"
+  [dataSource]="dataSource"
+  [actions]="(actions$ | async) ?? []"
+  (action)="onAction($event)"
+  (export)="onExport($event)"
+>
+  <div actions>
+    <a
+      *globePrivilegeAll="[Privileges.CanCreateTeam]"
+      globe-ui-button-icon
+      [icon]="GlobeUiIcon.UI_ADD"
+      [routerLink]="['./create']"
+      [label]="'teams.create' | translate"
+    ></a>
+  </div>
+</globe-ui-page-list>

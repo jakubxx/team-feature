@@ -1,0 +1,53 @@
+<globe-ui-page-list
+  fxFlex
+  [listName]="'teams-details'"
+  [name]="('teams.details' | translate: { COUNT: 2 }) + ' - ' + teamName"
+  [columns]="columns"
+  [showExport]="true"
+  [disableSearchBy]="true"
+  [rowLinkFn]="rowLinkFn"
+  [isLoading]="(isLoading$ | async) ?? false"
+  [dataSource]="dataSource"
+>
+  <div
+    navigation
+    navbar-navigation
+    fxLayout="row"
+    fxLayoutAlign="start start"
+    fxLayoutGap="5px"
+  >
+    <a
+      globe-ui-navbar-page-button
+      [icon]="GlobeUiIcon.UI_LIST"
+      [routerLink]="['./..']"
+    >
+      {{ 'teams.list' | translate }}
+    </a>
+  </div>
+
+  <div actions fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="5px">
+    <button
+      *globePrivilegeAll="[Privileges.CanDeleteTeam]"
+      globe-ui-button-icon
+      [icon]="GlobeUiIcon.UI_TRASH"
+      [label]="'common.delete' | translate"
+      (click)="onDeleteTeam()"
+    ></button>
+
+    <a
+      *globePrivilegeAll="[Privileges.CanUpdateTeam]"
+      globe-ui-button-icon
+      [label]="'teams.edit' | translate"
+      [icon]="GlobeUiIcon.UI_PENCIL"
+      [routerLink]="['./edit']"
+    ></a>
+
+    <a
+      *globePrivilegeAll="[Privileges.CanCreateTeam]"
+      globe-ui-button-icon
+      [label]="'teams.create' | translate"
+      [icon]="GlobeUiIcon.UI_ADD"
+      [routerLink]="['./../create']"
+    ></a>
+  </div>
+</globe-ui-page-list>

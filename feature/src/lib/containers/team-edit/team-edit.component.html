@@ -1,0 +1,59 @@
+<globe-ui-page-list
+  [name]="'teams.edit' | translate"
+  [listName]="'teamCreate'"
+  [dataSource]="dataSource"
+  [columns]="columns"
+  [showExport]="false"
+  [defaultColumnsDef]="columnsDef"
+  [selectedRows]="selectedRows"
+  [selectWith]="selectWith"
+>
+  <div [formGroup]="formGroup">
+    <globe-ui-form-field
+      id="team-group-name"
+      [fieldName]="'common.fields.name' | translate"
+      [errorMessages]="{
+        required: 'forms.fieldRequired' | translate,
+        maxlength:
+          ('forms.fieldMaxLength' | translate: { maxLength: nameMaxLength }),
+        minlength:
+          ('forms.fieldMinLength' | translate: { minLength: nameMinLength })
+      }"
+    >
+      <input globeUiFormFieldInput type="text" [formControlName]="'name'" />
+    </globe-ui-form-field>
+  </div>
+
+  <div
+    navigation
+    navbar-navigation
+    fxLayout="row"
+    fxLayoutAlign="start start"
+    fxLayoutGap="5px"
+  >
+    <a
+      globe-ui-navbar-page-button
+      [icon]="GlobeUiIcon.UI_ANGLE_SMALL_LEFT"
+      [routerLink]="['../']"
+    >
+      {{ 'teams.details' | translate }}
+    </a>
+    <a
+      globe-ui-navbar-page-button
+      [icon]="GlobeUiIcon.UI_LIST"
+      [routerLink]="['./../../']"
+    >
+      {{ 'teams.list' | translate }}
+    </a>
+  </div>
+
+  <div actions fxLayout="row" fxLayoutGap="5px">
+    <a
+      *globePrivilegeAll="[Privileges.CanUpdateTeam]"
+      globe-ui-button-icon
+      [icon]="GlobeUiIcon.UI_DISK"
+      (click)="submitList()"
+      [label]="'common.save' | translate"
+    ></a>
+  </div>
+</globe-ui-page-list>

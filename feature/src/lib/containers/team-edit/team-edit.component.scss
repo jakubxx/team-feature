@@ -1,0 +1,13 @@
+:host ::ng-deep {
+  #team-group-name .globe-ui-form-field-container {
+    flex-direction: row;
+    align-items: center;
+    .globe-ui-form-field-label {
+      margin-right: 20px;
+      margin-bottom: 0px;
+    }
+    .globe-ui-form-field-input-container {
+      width: 40%;
+    }
+  }
+}
